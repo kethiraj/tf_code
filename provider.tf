@@ -4,6 +4,10 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "tf_course" {
-  bucket = "ethiraj_test_bucket"
-  acl = "private"
+  bucket = "ethirajtestbucket"
 }  
+
+resource "aws_s3_bucket_acl" "tf_course" {
+  bucket = aws_s3_bucket.tf_course.id
+  acl    = "public-read-write"
+}
