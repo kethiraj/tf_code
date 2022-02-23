@@ -42,3 +42,23 @@ resource "aws_security_group" "tf_course" {
     "Terraform" : "true"
   }
 }
+
+resource "aws_instance" "tf_course" {
+  ami = "ami-0069731c25ae3be5b"
+  instance_type = "t2.nano"
+
+  vpc_security_group_ids = [
+    aws_security_group.tf_course.id
+  ]
+
+  tags = {
+    "Terraform" : "true"
+  }
+}
+
+resource "aws_eip" "tf_course" {
+  instance = aws_instance.tf_course.id
+  tags = {
+    "Terraform" : "true"
+  }
+} 
